@@ -1,0 +1,251 @@
+// ===================================
+// Cards Globais
+// ===================================
+
+// Card básico branco
+.card-white {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-2xl);
+
+    @media (max-width: 768px) {
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
+}
+
+// Card de autenticação
+.auth-card {
+    background: var(--white) !important;
+    padding: var(--spacing-2xl) !important;
+    border-radius: var(--border-radius-lg) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+
+    @media (max-width: 768px) {
+        padding: var(--spacing-xl) var(--spacing-lg) !important;
+    }
+
+    mat-card-header {
+        margin-bottom: var(--spacing-xl);
+        text-align: center;
+        display: block !important;
+
+        mat-card-title {
+            margin-bottom: var(--spacing-sm) !important;
+
+            .title-text {
+                font-size: 32px;
+                font-weight: 700;
+                background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+        }
+
+        mat-card-subtitle {
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+    }
+}
+
+// Card de boas-vindas (usado em login/register)
+.welcome-card {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%) !important;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-3xl) var(--spacing-2xl) !important;
+    border-radius: var(--border-radius-lg) !important;
+    box-shadow: var(--shadow-lg) !important;
+
+    @media (max-width: 768px) {
+        padding: var(--spacing-2xl) var(--spacing-xl) !important;
+    }
+
+    .welcome-content {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+
+        .icon-wrapper {
+            margin-bottom: var(--spacing-lg);
+
+            mat-icon {
+                font-size: 64px;
+                width: 64px;
+                height: 64px;
+                color: rgba(255, 255, 255, 0.9);
+                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+            }
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 0 0 var(--spacing-lg) 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+            @media (max-width: 768px) {
+                font-size: 28px;
+            }
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin: 0;
+
+            @media (max-width: 768px) {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+// Card de estatística (dashboard)
+.stat-card {
+    background: var(--white);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-2xl) var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        border-color: rgba(0, 0, 0, 0.08);
+
+        &::before {
+            opacity: 1;
+        }
+
+        mat-icon {
+            transform: scale(1.1);
+        }
+    }
+
+    mat-icon {
+        font-size: 56px;
+        width: 56px;
+        height: 56px;
+        color: var(--primary-color);
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+
+        @media (max-width: 768px) {
+            font-size: 48px;
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    .stat-info {
+        flex: 1;
+
+        h3 {
+            margin: 0 0 var(--spacing-xs) 0;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-number {
+            margin: 0;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--gray-800);
+            line-height: 1;
+
+            @media (max-width: 768px) {
+                font-size: 32px;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: var(--spacing-xl) var(--spacing-lg);
+        gap: var(--spacing-lg);
+    }
+}
+
+// Header de card com gradiente (perfil)
+.card-header-gradient {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    padding: var(--spacing-xl);
+    text-align: center;
+    color: var(--white);
+
+    @media (max-width: 768px) {
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
+}
+
+// Seção de card
+.card-section {
+    padding: var(--spacing-xl);
+
+    @media (max-width: 1024px) {
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
+
+    @media (max-width: 768px) {
+        padding: var(--spacing-lg);
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-xl);
+        padding-bottom: var(--spacing-md);
+        border-bottom: 2px solid var(--gray-100);
+
+        mat-icon {
+            color: var(--primary-color);
+            font-size: 28px;
+            width: 28px;
+            height: 28px;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--gray-800);
+
+            @media (max-width: 1024px) {
+                font-size: 20px;
+            }
+
+            @media (max-width: 768px) {
+                font-size: 18px;
+            }
+        }
+    }
+}
+

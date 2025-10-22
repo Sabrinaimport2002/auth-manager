@@ -1,59 +1,182 @@
-# AuthManager
+# 🔐 Auth Manager
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.6.
+Sistema de gerenciamento de autenticação desenvolvido em Angular com interface moderna e intuitiva.
 
-## Development server
+## 📋 Sobre o Projeto
 
-To start a local development server, run:
+Auth Manager é uma aplicação web para gerenciamento de autenticação de usuários, desenvolvida com Angular 20 e Angular Material. O sistema oferece funcionalidades de registro, login, gerenciamento de perfil e controle de acesso através de guards de rota.
 
+## ✨ Funcionalidades
+
+- 🔑 **Autenticação de Usuários**
+  - Login com email e senha
+  - Registro de novos usuários
+  - Logout seguro
+  - Proteção de rotas com guards
+
+- 👤 **Gerenciamento de Perfil**
+  - Visualização de dados do usuário
+  - Edição de nome e email
+  - Alteração de senha
+  - Avatar com iniciais do nome
+
+- 🎨 **Interface Moderna**
+  - Design responsivo com Angular Material
+  - Animações suaves e transições
+  - Feedback visual com notificações (snackbar)
+  - Tema personalizado
+
+- 📱 **Navegação**
+  - Menu lateral responsivo
+  - Dashboard interativo
+  - Páginas home e perfil
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Angular** 20.3.0
+- **Angular Material** 20.2.9
+- **TypeScript** 5.9.2
+- **RxJS** 7.8.0
+- **SCSS** para estilização
+- **LocalStorage** para persistência de dados
+
+## 📦 Pré-requisitos
+
+Antes de começar, você precisará ter instalado em sua máquina:
+
+- [Node.js](https://nodejs.org/) (versão 18 ou superior)
+- [npm](https://www.npmjs.com/) (geralmente vem com o Node.js)
+- [Angular CLI](https://angular.dev/tools/cli) (versão 20 ou superior)
+
+## 🚀 Instalação
+
+1. Clone o repositório:
+```bash
+git clone <url-do-repositorio>
+cd auth-manager
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+
+## 💻 Como Executar
+
+### Ambiente de Desenvolvimento
+
+Inicie o servidor de desenvolvimento:
+```bash
+npm start
+```
+ou
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Acesse a aplicação em `http://localhost:4200/`
 
-## Code scaffolding
+A aplicação será recarregada automaticamente sempre que você modificar os arquivos fonte.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Build de Produção
 
+Para criar uma build otimizada para produção:
 ```bash
-ng generate component component-name
+npm run build
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Os arquivos compilados serão armazenados no diretório `dist/`.
 
-```bash
-ng generate --help
+## 📁 Estrutura do Projeto
+
+```
+auth-manager/
+├── src/
+│   ├── app/
+│   │   ├── core/                    # Módulos e serviços principais
+│   │   │   ├── guards/              # Guards de rota (auth, guest)
+│   │   │   ├── models/              # Interfaces e modelos de dados
+│   │   │   ├── services/            # Serviços (auth, menu, notification)
+│   │   │   └── validators/          # Validadores customizados
+│   │   ├── pages/                   # Páginas da aplicação
+│   │   │   ├── dashboard/           # Página principal após login
+│   │   │   ├── home/                # Página inicial
+│   │   │   ├── login/               # Página de login
+│   │   │   ├── profile/             # Página de perfil do usuário
+│   │   │   └── register/            # Página de registro
+│   │   ├── shared/                  # Componentes compartilhados
+│   │   │   ├── components/          # Componentes reutilizáveis
+│   │   │   │   └── menu/            # Menu lateral
+│   │   │   └── material/            # Módulos do Angular Material
+│   │   ├── app.config.ts            # Configuração da aplicação
+│   │   ├── app.routes.ts            # Configuração de rotas
+│   │   └── app.ts                   # Componente principal
+│   ├── styles/                      # Estilos globais
+│   │   ├── _animations.scss         # Animações customizadas
+│   │   ├── _avatar.scss             # Estilos de avatar
+│   │   ├── _buttons.scss            # Estilos de botões
+│   │   ├── _cards.scss              # Estilos de cards
+│   │   ├── _forms.scss              # Estilos de formulários
+│   │   ├── _material-overrides.scss # Sobrescritas do Material
+│   │   ├── _snackbar.scss           # Estilos de notificações
+│   │   └── _variables.scss          # Variáveis SCSS
+│   └── styles.scss                  # Estilos principais
+├── angular.json                     # Configuração do Angular
+├── package.json                     # Dependências do projeto
+└── tsconfig.json                    # Configuração do TypeScript
 ```
 
-## Building
+## 🎯 Funcionalidades Implementadas
 
-To build the project run:
+### Autenticação
+- ✅ Sistema de login com validação
+- ✅ Registro de novos usuários
+- ✅ Validação de email único
+- ✅ Persistência de sessão (localStorage)
+- ✅ Guards para proteção de rotas
 
-```bash
-ng build
-```
+### Perfil do Usuário
+- ✅ Visualização de dados do perfil
+- ✅ Edição de nome e email
+- ✅ Alteração de senha com validação
+- ✅ Avatar com iniciais
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Interface
+- ✅ Menu lateral responsivo
+- ✅ Sistema de notificações
+- ✅ Animações e transições
+- ✅ Design responsivo
 
-## Running unit tests
+## 🚧 Melhorias Futuras
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Este projeto ainda está em desenvolvimento. Algumas melhorias planejadas incluem:
 
-```bash
-ng test
-```
+- [ ] Integração com backend real (API REST)
+- [ ] Validação de email
+- [ ] Recuperação de senha
+- [ ] Autenticação com JWT
+- [ ] Refresh token
+- [ ] Perfil com foto de usuário
+- [ ] Histórico de atividades
 
-## Running end-to-end tests
+## 📝 Scripts Disponíveis
 
-For end-to-end (e2e) testing, run:
+- `npm start` - Inicia o servidor de desenvolvimento
+- `npm run build` - Cria build de produção
+- `npm run watch` - Build em modo watch para desenvolvimento
 
-```bash
-ng e2e
-```
+## 🤝 Contribuindo
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
 
-## Additional Resources
+## 📄 Licença
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Este projeto está em desenvolvimento.
+
+## 👨‍💻 Autor
+
+Desenvolvido com ❤️ usando Angular por Sabrina Vitória.
+
+---
+
+**Nota**: Atualmente este projeto utiliza localStorage para armazenar dados. Em um ambiente de produção, recomenda-se implementar uma API backend com autenticação segura e banco de dados apropriado.

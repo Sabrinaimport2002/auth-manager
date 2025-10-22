@@ -1,0 +1,18 @@
+// Ajuste para o layout login (welcome à esquerda, form à direita)
+.auth-container.card-left-right {
+    .welcome-card {
+        border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg) !important;
+
+        @media (max-width: 768px) {
+            border-radius: var(--border-radius-lg) !important;
+        }
+    }
+
+    .auth-card {
+        border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0 !important;
+
+        @media (max-width: 768px) {
+            border-radius: var(--border-radius-lg) !important;
+        }
+    }
+}

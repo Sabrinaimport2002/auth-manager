@@ -1,0 +1,43 @@
+// ===================================
+// Sobrescrever cores do Angular Material
+// ===================================
+
+// Inputs com foco - usar cor rosa ao invés de roxo/magenta
+.mat-mdc-form-field {
+  &.mat-focused {
+    .mdc-text-field--focused {
+      .mdc-notched-outline {
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__notch,
+        .mdc-notched-outline__trailing {
+          border-color: var(--primary-color) !important;
+        }
+      }
+    }
+
+    .mat-mdc-floating-label,
+    .mat-mdc-form-field-label {
+      color: var(--primary-color) !important;
+    }
+  }
+
+  // Cor do cursor piscando
+  input,
+  textarea {
+    caret-color: var(--primary-color) !important;
+  }
+}
+
+// Labels flutuantes quando o campo tem valor
+.mdc-floating-label--float-above {
+  color: var(--primary-color) !important;
+}
+
+// Ripple effect dos botões Material
+.mat-mdc-button,
+.mat-mdc-raised-button {
+  .mat-ripple-element {
+    background-color: var(--overlay-light) !important;
+  }
+}
+

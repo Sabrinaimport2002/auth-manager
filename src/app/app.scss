@@ -1,0 +1,34 @@
+// Variáveis do layout
+$sidebar-width-expanded: 280px;
+$sidebar-width-collapsed: 80px;
+$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Container principal do conteúdo
+.main-content {
+    min-height: 100vh;
+    transition: $transition;
+    
+    // Quando o menu está expandido
+    &.menu-expanded {
+        margin-left: $sidebar-width-expanded;
+        
+        @media (max-width: 768px) {
+            margin-left: 0;
+        }
+    }
+    
+    // Quando o menu está recolhido
+    &.menu-collapsed {
+        margin-left: $sidebar-width-collapsed;
+        
+        @media (max-width: 768px) {
+            margin-left: 0;
+        }
+    }
+    
+    // Quando não há menu (páginas públicas)
+    &.no-menu {
+        margin-left: 0;
+    }
+}
+

@@ -1,0 +1,110 @@
+// ===================================
+// Animações de Ícones
+// ===================================
+
+// Float (usado em login)
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.05);
+    }
+}
+
+.icon-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+// Celebrate (usado em register)
+@keyframes celebrate {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateY(-10px) rotate(-10deg) scale(1.05);
+    }
+    50% {
+        transform: translateY(-15px) rotate(0deg) scale(1.1);
+    }
+    75% {
+        transform: translateY(-10px) rotate(10deg) scale(1.05);
+    }
+}
+
+.icon-celebrate {
+    animation: celebrate 3s ease-in-out infinite;
+}
+
+// Rotate
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.icon-rotate {
+    animation: rotate 2s linear infinite;
+}
+
+// Bounce
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.icon-bounce {
+    animation: bounce 1s ease-in-out infinite;
+}
+
+// Swing
+@keyframes swing {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(15deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+}
+
+.icon-swing {
+    animation: swing 2s ease-in-out infinite;
+}
+
+// Pulse (diferente do pulse geral, focado em ícones)
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.8;
+    }
+}
+
+.icon-pulse {
+    animation: iconPulse 1.5s ease-in-out infinite;
+}
+
+// Wrapper de ícones com animação
+.icon-wrapper {
+    display: inline-block;
+    
+    &.animated {
+        mat-icon {
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+    }
+}
+

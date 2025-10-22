@@ -1,0 +1,49 @@
+// Container específico do profile com animação suave
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    animation: profile-enter 0.5s ease-out;
+}
+
+// Animação específica do profile (mais suave)
+@keyframes profile-enter {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+// Animação para as seções do formulário aparecerem em sequência
+.forms-container {
+    .card-section {
+        animation: section-fade-in 0.5s ease-out;
+        animation-fill-mode: both;
+
+        &:first-child {
+            animation-delay: 0.1s;
+        }
+
+        &:last-child {
+            animation-delay: 0.2s;
+        }
+    }
+}
+
+@keyframes section-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,32 @@
+// ===================================
+// Arquivo principal de estilos globais
+// ===================================
+
+// 1. Variáveis (sempre primeiro)
+@import './variables';
+
+// 2. Sobrescritas do Material Design
+@import './material-overrides';
+
+// 3. Tipografia
+@import './typography';
+
+// 4. Componentes reutilizáveis
+@import './buttons';
+@import './forms';
+@import './cards';
+@import './avatar';
+
+// 5. Wrappers de página
+@import './page-wrappers';
+
+// 6. Layout e helpers
+@import './layout';
+
+// 7. Componentes customizados
+@import './snackbar';
+@import './scrollbar';
+
+// 8. Animações
+@import './animations';
+@import './icon-animations';

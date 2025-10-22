@@ -1,0 +1,141 @@
+// ===================================
+// Wrappers de Página
+// ===================================
+
+// Wrapper padrão de página com background e animação
+.page-wrapper {
+    background: var(--bg-gradient-5);
+    padding: var(--spacing-2xl);
+    animation: page-enter 0.5s ease-out;
+
+    @media (max-width: 768px) {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+}
+
+// Animação de entrada de página
+@keyframes page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Wrapper para páginas de autenticação (login, register)
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-gradient-5);
+    animation: page-enter-fast 0.4s ease-out;
+}
+
+// Animação rápida para páginas de auth
+@keyframes page-enter-fast {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+// Container de autenticação
+.auth-container {
+    display: flex;
+    gap: 0;
+    max-width: 900px;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+
+    // Adaptar border-radius para diferentes layouts
+    &.card-left-right {
+        .auth-card:first-child {
+            border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg) !important;
+
+            @media (max-width: 768px) {
+                border-radius: var(--border-radius-lg) !important;
+            }
+        }
+
+        .auth-card:last-child {
+            border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0 !important;
+
+            @media (max-width: 768px) {
+                border-radius: var(--border-radius-lg) !important;
+            }
+        }
+    }
+}
+
+// Container centralizado
+.centered-container {
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    animation: page-content-enter 0.6s ease-out;
+}
+
+// Animação para conteúdo centralizado
+@keyframes page-content-enter {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Container com sidebar (profile, dashboard, etc)
+.container-with-sidebar {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+// Grid de cards
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+}
+
+// Container de formulários lado a lado
+.forms-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+    }
+
+    // Divisor vertical entre os formulários
+    > *:first-child {
+        border-right: 1px solid var(--gray-200);
+
+        @media (max-width: 1024px) {
+            border-right: none;
+            border-bottom: 1px solid var(--gray-200);
+        }
+    }
+}
+

@@ -1,0 +1,130 @@
+<div class="page-wrapper">
+    <div class="profile-container">
+
+        <!-- Header do Perfil com Avatar -->
+        <div class="card-header-gradient">
+            <div class="avatar-section">
+
+                <div class="avatar-placeholder">
+                    <mat-icon>person</mat-icon>
+                </div>
+                
+            </div>
+            <h1 class="user-name">{{ currentUser?.name }}</h1>
+            <p class="user-email">{{ currentUser?.email }}</p>
+        </div>
+
+        <!-- Formulários lado a lado -->
+        <div class="forms-container">
+            <!-- Seção de Editar Dados -->
+            <div class="card-section">
+                <div class="section-header">
+                    <mat-icon>edit</mat-icon>
+                    <h2>Informações Pessoais</h2>
+                </div>
+
+                <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" class="form-container">
+                    <div class="form-row">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Nome Completo</mat-label>
+                            <input matInput type="text" formControlName="name" placeholder="Digite seu nome">
+                            <mat-icon matPrefix>person_outline</mat-icon>
+                            @if (profileForm.get('name')?.hasError('required')) {
+                            <mat-error>Nome é obrigatório</mat-error>
+                            }
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-row">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>E-mail</mat-label>
+                            <input matInput type="email" formControlName="email" placeholder="seu@email.com">
+                            <mat-icon matPrefix>email</mat-icon>
+                            @if (profileForm.get('email')?.hasError('required')) {
+                            <mat-error>E-mail é obrigatório</mat-error>
+                            }
+                            @if (profileForm.get('email')?.hasError('email')) {
+                            <mat-error>E-mail inválido</mat-error>
+                            }
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-actions">
+                        <button mat-raised-button type="submit" [disabled]="profileForm.invalid" class="btn-primary">
+                            <mat-icon>check_circle</mat-icon>
+                            <span>Salvar Alterações</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Seção de Trocar Senha -->
+            <div class="card-section">
+            <div class="section-header">
+                <mat-icon>lock_outline</mat-icon>
+                <h2>Segurança</h2>
+            </div>
+
+            <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" class="form-container">
+                <div class="form-row">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Senha Atual</mat-label>
+                        <input matInput [type]="hideCurrentPassword ? 'password' : 'text'"
+                            formControlName="currentPassword" placeholder="Digite sua senha atual">
+                        <mat-icon matPrefix>lock</mat-icon>
+                        <button mat-icon-button matSuffix type="button" (click)="toggleCurrentPasswordVisibility()">
+                            <mat-icon>{{hideCurrentPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        @if (passwordForm.get('currentPassword')?.hasError('required')) {
+                        <mat-error>Senha atual é obrigatória</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div class="form-row-double">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nova Senha</mat-label>
+                        <input matInput [type]="hideNewPassword ? 'password' : 'text'" formControlName="newPassword"
+                            placeholder="Digite a nova senha">
+                        <mat-icon matPrefix>vpn_key</mat-icon>
+                        <button mat-icon-button matSuffix type="button" (click)="toggleNewPasswordVisibility()">
+                            <mat-icon>{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        @if (passwordForm.get('newPassword')?.hasError('required')) {
+                        <mat-error>Nova senha é obrigatória</mat-error>
+                        }
+                        @if (passwordForm.get('newPassword')?.hasError('minlength')) {
+                        <mat-error>Mínimo 6 caracteres</mat-error>
+                        }
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Confirmar Nova Senha</mat-label>
+                        <input matInput [type]="hideConfirmPassword ? 'password' : 'text'"
+                            formControlName="confirmPassword" placeholder="Confirme a nova senha">
+                        <mat-icon matPrefix>check_circle_outline</mat-icon>
+                        <button mat-icon-button matSuffix type="button" (click)="toggleConfirmPasswordVisibility()">
+                            <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        @if (passwordForm.get('confirmPassword')?.hasError('required')) {
+                        <mat-error>Confirmação é obrigatória</mat-error>
+                        }
+                        @if (passwordForm.get('confirmPassword')?.hasError('passwordMismatch')) {
+                        <mat-error>As senhas não conferem</mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div class="form-actions">
+                    <button mat-raised-button type="submit" [disabled]="passwordForm.invalid"
+                        class="btn-primary">
+                        <mat-icon>shield</mat-icon>
+                        <span>Alterar Senha</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,199 @@
+// ===================================
+// Animações Globais
+// ===================================
+
+// Animação customizada para snackbar
+.mat-mdc-snack-bar-container {
+  animation: snackbar-slide-in 0.3s ease-out !important;
+}
+
+@keyframes snackbar-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+// Fade in
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Slide up
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Slide down
+@keyframes slide-down {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Scale in
+@keyframes scale-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Pulse
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+// Shake
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+// ===================================
+// Animações de Entrada de Página
+// ===================================
+
+// Fade in com movimento suave para cima
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Fade in suave (mais rápido)
+@keyframes page-enter-fast {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Slide da esquerda
+@keyframes page-enter-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Slide da direita
+@keyframes page-enter-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Scale in suave
+@keyframes page-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Classes utilitárias de animação
+.animate-fade-in {
+  animation: fade-in var(--transition-normal);
+}
+
+.animate-slide-up {
+  animation: slide-up var(--transition-normal);
+}
+
+.animate-slide-down {
+  animation: slide-down var(--transition-normal);
+}
+
+.animate-scale-in {
+  animation: scale-in var(--transition-normal);
+}
+
+.animate-pulse {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+// Animação para entrada de página
+.animate-page-enter {
+  animation: page-enter 0.5s ease-out;
+}
+
+.animate-page-enter-fast {
+  animation: page-enter-fast 0.3s ease-out;
+}
+
+.animate-page-enter-left {
+  animation: page-enter-left 0.4s ease-out;
+}
+
+.animate-page-enter-right {
+  animation: page-enter-right 0.4s ease-out;
+}
+
+.animate-page-scale {
+  animation: page-scale-in 0.4s ease-out;
+}
+

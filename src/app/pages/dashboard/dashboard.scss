@@ -1,0 +1,17 @@
+// Ajuste do padding do dashboard
+.page-wrapper {
+    padding: var(--spacing-3xl) var(--spacing-2xl);
+
+    @media (max-width: 768px) {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+}
+
+// Ajuste de margem do subtítulo
+.subtitle {
+    margin: 0 0 var(--spacing-3xl) 0;
+
+    @media (max-width: 768px) {
+        margin: 0 0 var(--spacing-2xl) 0;
+    }
+}

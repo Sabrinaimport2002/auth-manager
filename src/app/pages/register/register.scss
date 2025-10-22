@@ -1,0 +1,28 @@
+// Layout register (form à esquerda, welcome à direita)
+.auth-container.register-layout {
+    max-width: 1100px;
+
+    .auth-card {
+        flex: 0.9;
+        border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg) !important;
+        animation: card-slide-right 0.5s ease-out;
+
+        @media (max-width: 768px) {
+            border-radius: var(--border-radius-lg) !important;
+            animation: card-fade-in 0.4s ease-out;
+        }
+    }
+
+    .welcome-card {
+        flex: 1.1;
+        border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0 !important;
+        animation: card-slide-left 0.5s ease-out;
+
+        @media (max-width: 768px) {
+            border-radius: var(--border-radius-lg) !important;
+            animation: card-fade-in 0.4s ease-out 0.1s;
+            animation-fill-mode: both;
+        }
+    }
+}
+

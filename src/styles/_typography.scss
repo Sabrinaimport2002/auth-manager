@@ -1,0 +1,151 @@
+// ===================================
+// Tipografia Global
+// ===================================
+
+// Título com gradiente
+.title-gradient {
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    line-height: 1.2;
+}
+
+// Título principal (h1)
+.page-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0 0 var(--spacing-sm) 0;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    display: inline-block;
+
+    @media (max-width: 768px) {
+        font-size: 32px;
+    }
+}
+
+// Título grande (hero)
+.hero-title {
+    font-size: 64px;
+    font-weight: 800;
+    margin: 0 0 var(--spacing-xl) 0;
+    padding: 4px 0;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    display: inline-block;
+
+    @media (max-width: 768px) {
+        font-size: 42px;
+        margin: 0 0 var(--spacing-lg) 0;
+    }
+}
+
+// Título de seção (h2)
+.section-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin: 0;
+
+    @media (max-width: 1024px) {
+        font-size: 20px;
+    }
+
+    @media (max-width: 768px) {
+        font-size: 18px;
+    }
+}
+
+// Subtítulo
+.subtitle {
+    font-size: 18px;
+    color: var(--gray-600);
+    margin: 0;
+    font-weight: 400;
+
+    @media (max-width: 768px) {
+        font-size: 16px;
+    }
+}
+
+// Subtítulo grande
+.subtitle-large {
+    font-size: 24px;
+    color: var(--gray-600);
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.6;
+
+    @media (max-width: 768px) {
+        font-size: 18px;
+    }
+}
+
+// Texto de card
+.card-title-gradient {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+// Nome de usuário
+.user-name {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    margin: 0 0 var(--spacing-sm) 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+        font-size: 24px;
+    }
+}
+
+// Email de usuário
+.user-email {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-weight: 400;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+}
+
+// Texto de ajuda/hint
+.help-text {
+    font-size: 14px;
+    color: var(--gray-600);
+    margin: var(--spacing-sm) 0 0 0;
+}
+
+// Texto de erro
+.error-text {
+    font-size: 14px;
+    color: var(--error-color);
+    margin: var(--spacing-sm) 0 0 0;
+}
+
+// Label uppercase
+.label-uppercase {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
