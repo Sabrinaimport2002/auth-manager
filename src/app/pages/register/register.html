@@ -21,6 +21,9 @@
               @if (registerForm.get('name')?.hasError('required')) {
               <mat-error>Nome é obrigatório</mat-error>
               }
+              @if (registerForm.get('name')?.hasError('minlength')) {
+              <mat-error>Nome deve ter pelo menos 3 caracteres</mat-error>
+              }
             </mat-form-field>
 
             <!-- Email -->
@@ -51,7 +54,10 @@
               @if (registerForm.get('password')?.hasError('required')) {
               <mat-error>Senha é obrigatória</mat-error>
               } @if (registerForm.get('password')?.hasError('minlength')) {
-              <mat-error>Senha precisa ter no mínimo 6 caracteres</mat-error>
+              <mat-error>Senha precisa ter no mínimo 8 caracteres</mat-error>
+              }
+              @if (registerForm.get('password')?.hasError('passwordStrength')) {
+              <mat-error>Senha precisa ter pelo menos uma letra maiúscula, um número e um caractere especial</mat-error>
               }
             </mat-form-field>
 

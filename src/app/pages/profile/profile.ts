@@ -4,6 +4,7 @@ import { NotificationService } from '../../core/services/notification.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { passwordMatchValidator } from '../../core/validators/password-match.validator';
 import { MaterialModules } from '../../shared/material/material.modules';
+import { passwordStrengthValidator } from '../../core/validators/password-strength.validator';
 
 @Component({
   selector: 'app-profile',
@@ -18,14 +19,14 @@ export class Profile implements OnInit {
   currentUser = this.authService.getCurrentUser();
 
   profileForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email])
   });
 
   // Formulário de troca de senha
   passwordForm = new FormGroup({
     currentPassword: new FormControl('', [Validators.required]),
-    newPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    newPassword: new FormControl('', [Validators.required, Validators.minLength(8), passwordStrengthValidator()]),
     confirmPassword: new FormControl('', [Validators.required])
   }, { validators: passwordMatchValidator('newPassword', 'confirmPassword') });
 

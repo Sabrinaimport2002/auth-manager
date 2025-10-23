@@ -5,6 +5,7 @@ import { RouterLink, Router } from '@angular/router';
 import { MaterialModules } from '../../shared/material/material.modules';
 import { NotificationService } from '../../core/services/notification.service';
 import { passwordMatchValidator } from '../../core/validators/password-match.validator';
+import { passwordStrengthValidator } from '../../core/validators/password-strength.validator';
 
 @Component({
   selector: 'app-register',
@@ -20,9 +21,9 @@ export class Register {
   
 
   registerForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8), passwordStrengthValidator()]),
     confirmPassword: new FormControl('', [Validators.required]),
   }, { validators: passwordMatchValidator('password', 'confirmPassword') }
   );

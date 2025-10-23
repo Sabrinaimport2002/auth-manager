@@ -1,30 +1,32 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private users: User[] = [];
+  readonly users: User[] = [];
   private currentUser: User | null = null;
 
   constructor() {
     const savedUsers = localStorage.getItem('users');
-    if (savedUsers) {
+    if (savedUsers) 
       this.users = JSON.parse(savedUsers);
-    }
 
     const saveUser = localStorage.getItem('currentUser');
-    if (saveUser) {
+    if (saveUser)
       this.currentUser = JSON.parse(saveUser);
-    }
   }
 
   login(email: string, password: string): User | null {
-    const user = this.users.find(u => u.email === email && u.password === password);
+    const user = this.users.find(u => u.email === email);
+    if(!user)
+      return null
 
-    if (user) {
+    const comparePassword = bcrypt.compareSync(password, user.password);
+    if(comparePassword) {      
       this.currentUser = user;
       localStorage.setItem('currentUser', JSON.stringify(user));
       return user;
@@ -40,14 +42,15 @@ export class AuthService {
 
   register(user: User): User | null {
     const emailExists = this.users.find(u => u.email === user.email);
-
     if (emailExists)
       return null;
+
+    const passwordHash = bcrypt.hashSync(user.password, 10);
 
     const newUser: User = {
       id: (this.users.length + 1).toString(),
       email: user.email,
-      password: user.password,
+      password: passwordHash,
       name: user.name
     }
 
@@ -57,16 +60,14 @@ export class AuthService {
   }
 
   updateProfile(name: string, email: string): { success: boolean; message: string } {
-    if (!this.currentUser) {
+    if (!this.currentUser)
       return { success: false, message: 'Usuário não está logado' };
-    }
 
     const emailExists = this.users.find(
       u => u.email === email && u.id !== this.currentUser?.id
     );
-    if (emailExists) {
+    if (emailExists)
       return { success: false, message: 'Email já está em uso por outro usuário' };
-    }
 
     const userIndex = this.users.findIndex(u => u.id === this.currentUser?.id);
 
@@ -87,20 +88,18 @@ export class AuthService {
   }
 
   changePassword(currentPassword: string, newPassword: string): { success: boolean; message: string } {
-    if (!this.currentUser) {
+    if (!this.currentUser)
       return { success: false, message: 'Usuário não está logado' };
-    }
 
-    if (this.currentUser.password !== currentPassword) {
+    const compareCurrentPassword = bcrypt.compareSync(currentPassword, this.currentUser.password)
+    if (!compareCurrentPassword)
       return { success: false, message: 'Senha atual incorreta' };
-    }
 
     const userIndex = this.users.findIndex(u => u.id === this.currentUser?.id);
 
     if (userIndex !== -1) {
-      this.users[userIndex].password = newPassword;
-
-      this.currentUser.password = newPassword;
+      this.users[userIndex].password = bcrypt.hashSync(newPassword, 10);
+      this.currentUser.password = bcrypt.hashSync(newPassword, 10);
 
       localStorage.setItem('users', JSON.stringify(this.users));
       localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
