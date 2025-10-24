@@ -4,16 +4,21 @@ import { MenuService } from '../../../core/services/menu.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MaterialModules } from '../../material/material.modules';
 import { CommonModule } from '@angular/common';
+import { NotificationService } from '../../../core/services/notification.service';
+import { LoadingOverlay } from '../loading-overlay/loading-overlay';
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterLink, RouterLinkActive, MaterialModules, CommonModule],
+  imports: [RouterLink, RouterLinkActive, MaterialModules, CommonModule, LoadingOverlay],
   templateUrl: './menu.html',
   styleUrl: './menu.scss'
 })
 export class Menu {
+  isLoading = false;
+
   readonly authService = inject(AuthService);
   readonly menuService = inject(MenuService);
+  readonly notificationService = inject(NotificationService);
   readonly router = inject(Router);
 
   currentUser = this.authService.getCurrentUser();
@@ -41,7 +46,16 @@ export class Menu {
   }
 
   logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
+    this.isLoading = true;
+    this.authService.logout().subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        this.isLoading = false;
+        this.notificationService.showError(error.message || 'Erro ao fazer logout. Tente novamente.');
+      }
+    })
   }
 }

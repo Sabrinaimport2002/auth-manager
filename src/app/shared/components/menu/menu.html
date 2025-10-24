@@ -64,3 +64,6 @@
 <button mat-mini-fab class="mobile-toggle-btn" (click)="toggleMobileMenu()">
     <mat-icon>{{ isMobileMenuOpen() ? 'close' : 'menu' }}</mat-icon>
 </button>
+
+  <!-- Loading Overlay -->
+<app-loading-overlay [show]="isLoading" message="Saindo..."></app-loading-overlay>

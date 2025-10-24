@@ -6,14 +6,17 @@ import { MaterialModules } from '../../shared/material/material.modules';
 import { NotificationService } from '../../core/services/notification.service';
 import { passwordMatchValidator } from '../../core/validators/password-match.validator';
 import { passwordStrengthValidator } from '../../core/validators/password-strength.validator';
+import { LoadingOverlay } from '../../shared/components/loading-overlay/loading-overlay';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, RouterLink, MaterialModules],
+  imports: [ReactiveFormsModule, RouterLink, MaterialModules, LoadingOverlay
+  ],
   templateUrl: './register.html',
   styleUrl: './register.scss'
 })
 export class Register {
+  isLoading = false;
 
   readonly authService = inject(AuthService);
   readonly router = inject(Router);
@@ -40,18 +43,21 @@ export class Register {
   }
 
   onSubmit() {
+    this.isLoading = true
     const name = this.registerForm.value.name || '';
     const email = this.registerForm.value.email || '';
     const password = this.registerForm.value.password || '';
 
-    const user = this.authService.register({ email: email, password: password, name: name });
-
-    if (user) {
-      this.notificationService.showSuccess('Cadastro realizado com sucesso! Faça login para continuar.');
-      this.router.navigate(['/login']);
-    }
-    else {
-      this.notificationService.showError('Email já cadastrado. Tente outro email ou faça login.');
-    }
+    this.authService.register({ email: email, password: password, name: name }).subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.notificationService.showSuccess('Cadastro realizado com sucesso! Faça login para continuar.');
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        this.isLoading = false;
+        this.notificationService.showError(error.message || 'Email já cadastrado. Tente outro email ou faça login.');
+      }
+    })
   }
 }

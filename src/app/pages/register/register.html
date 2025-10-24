@@ -20,8 +20,7 @@
               <mat-icon matPrefix>person</mat-icon>
               @if (registerForm.get('name')?.hasError('required')) {
               <mat-error>Nome é obrigatório</mat-error>
-              }
-              @if (registerForm.get('name')?.hasError('minlength')) {
+              } @if (registerForm.get('name')?.hasError('minlength')) {
               <mat-error>Nome deve ter pelo menos 3 caracteres</mat-error>
               }
             </mat-form-field>
@@ -44,44 +43,68 @@
             <!-- Senha -->
             <mat-form-field appearance="outline" class="half-width">
               <mat-label>Senha</mat-label>
-              <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password"
-                placeholder="Digite sua senha" />
+              <input
+                matInput
+                [type]="hidePassword ? 'password' : 'text'"
+                formControlName="password"
+                placeholder="Digite sua senha"
+              />
               <mat-icon matPrefix>lock</mat-icon>
-              <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()"
-                [attr.aria-label]="'Alternar visibilidade da senha'">
-                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="togglePasswordVisibility()"
+                [attr.aria-label]="'Alternar visibilidade da senha'"
+              >
+                <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
               </button>
               @if (registerForm.get('password')?.hasError('required')) {
               <mat-error>Senha é obrigatória</mat-error>
               } @if (registerForm.get('password')?.hasError('minlength')) {
               <mat-error>Senha precisa ter no mínimo 8 caracteres</mat-error>
-              }
-              @if (registerForm.get('password')?.hasError('passwordStrength')) {
-              <mat-error>Senha precisa ter pelo menos uma letra maiúscula, um número e um caractere especial</mat-error>
+              } @if (registerForm.get('password')?.hasError('passwordStrength')) {
+              <mat-error
+                >Senha precisa ter pelo menos uma letra maiúscula, um número e um caractere
+                especial</mat-error
+              >
               }
             </mat-form-field>
 
             <!-- Confirmar Senha -->
             <mat-form-field appearance="outline" class="half-width">
               <mat-label>Confirmar Senha</mat-label>
-              <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword"
-                placeholder="Confirme sua senha" />
+              <input
+                matInput
+                [type]="hideConfirmPassword ? 'password' : 'text'"
+                formControlName="confirmPassword"
+                placeholder="Confirme sua senha"
+              />
               <mat-icon matPrefix>lock_outline</mat-icon>
-              <button mat-icon-button matSuffix type="button" (click)="toggleConfirmPasswordVisibility()"
-                [attr.aria-label]="'Alternar visibilidade da senha'">
-                <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="toggleConfirmPasswordVisibility()"
+                [attr.aria-label]="'Alternar visibilidade da senha'"
+              >
+                <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
               </button>
               @if (registerForm.get('confirmPassword')?.hasError('required')) {
               <mat-error>Confirmação de senha é obrigatória</mat-error>
-              }
-              @if (registerForm.get('confirmPassword')?.hasError('passwordMismatch')) {
+              } @if (registerForm.get('confirmPassword')?.hasError('passwordMismatch')) {
               <mat-error>As senhas não conferem</mat-error>
               }
             </mat-form-field>
           </div>
 
           <!-- Botão de submit -->
-          <button mat-raised-button class="btn-primary" type="submit" [disabled]="registerForm.invalid">
+          <button
+            mat-raised-button
+            class="btn-primary"
+            type="submit"
+            [disabled]="registerForm.invalid"
+          >
             <span>Cadastrar</span>
             <mat-icon>person_add</mat-icon>
           </button>
@@ -105,4 +128,7 @@
       </div>
     </mat-card>
   </div>
+
+  <!-- Loading Overlay -->
+  <app-loading-overlay [show]="isLoading" message="Cadastrando..."></app-loading-overlay>
 </div>

@@ -48,7 +48,12 @@
           </div>
 
           <div class="form-actions">
-            <button mat-raised-button type="submit" [disabled]="profileForm.invalid" class="btn-primary">
+            <button
+              mat-raised-button
+              type="submit"
+              [disabled]="profileForm.invalid"
+              class="btn-primary"
+            >
               <mat-icon>check_circle</mat-icon>
               <span>Salvar Alterações</span>
             </button>
@@ -67,10 +72,19 @@
           <div class="form-row">
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Senha Atual</mat-label>
-              <input matInput [type]="hideCurrentPassword ? 'password' : 'text'" formControlName="currentPassword"
-                placeholder="Digite sua senha atual" />
+              <input
+                matInput
+                [type]="hideCurrentPassword ? 'password' : 'text'"
+                formControlName="currentPassword"
+                placeholder="Digite sua senha atual"
+              />
               <mat-icon matPrefix>lock</mat-icon>
-              <button mat-icon-button matSuffix type="button" (click)="toggleCurrentPasswordVisibility()">
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="toggleCurrentPasswordVisibility()"
+              >
                 <mat-icon>{{ hideCurrentPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
               </button>
               @if (passwordForm.get('currentPassword')?.hasError('required')) {
@@ -82,28 +96,48 @@
           <div class="form-row-double">
             <mat-form-field appearance="outline">
               <mat-label>Nova Senha</mat-label>
-              <input matInput [type]="hideNewPassword ? 'password' : 'text'" formControlName="newPassword"
-                placeholder="Digite a nova senha" />
+              <input
+                matInput
+                [type]="hideNewPassword ? 'password' : 'text'"
+                formControlName="newPassword"
+                placeholder="Digite a nova senha"
+              />
               <mat-icon matPrefix>vpn_key</mat-icon>
-              <button mat-icon-button matSuffix type="button" (click)="toggleNewPasswordVisibility()">
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="toggleNewPasswordVisibility()"
+              >
                 <mat-icon>{{ hideNewPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
               </button>
               @if (passwordForm.get('newPassword')?.hasError('required')) {
               <mat-error>Nova senha é obrigatória</mat-error>
               } @if (passwordForm.get('newPassword')?.hasError('minlength')) {
               <mat-error>Mínimo 8 caracteres</mat-error>
-              }
-              @if (passwordForm.get('newPassword')?.hasError('passwordStrength')) {
-              <mat-error>Senha precisa ter pelo menos uma letra maiúscula, um número e um caractere especial</mat-error>
+              } @if (passwordForm.get('newPassword')?.hasError('passwordStrength')) {
+              <mat-error
+                >Senha precisa ter pelo menos uma letra maiúscula, um número e um caractere
+                especial</mat-error
+              >
               }
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Confirmar Nova Senha</mat-label>
-              <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword"
-                placeholder="Confirme a nova senha" />
+              <input
+                matInput
+                [type]="hideConfirmPassword ? 'password' : 'text'"
+                formControlName="confirmPassword"
+                placeholder="Confirme a nova senha"
+              />
               <mat-icon matPrefix>check_circle_outline</mat-icon>
-              <button mat-icon-button matSuffix type="button" (click)="toggleConfirmPasswordVisibility()">
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="toggleConfirmPasswordVisibility()"
+              >
                 <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
               </button>
               @if (passwordForm.get('confirmPassword')?.hasError('required')) {
@@ -115,7 +149,12 @@
           </div>
 
           <div class="form-actions">
-            <button mat-raised-button type="submit" [disabled]="passwordForm.invalid" class="btn-primary">
+            <button
+              mat-raised-button
+              type="submit"
+              [disabled]="passwordForm.invalid"
+              class="btn-primary"
+            >
               <mat-icon>shield</mat-icon>
               <span>Alterar Senha</span>
             </button>
@@ -124,4 +163,7 @@
       </div>
     </div>
   </div>
+
+  <!-- Loading Overlay -->
+  <app-loading-overlay [show]="isLoading" message="Atualizando..."></app-loading-overlay>
 </div>
