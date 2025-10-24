@@ -3,30 +3,30 @@
 // ===================================
 
 // 1. Variáveis (sempre primeiro)
-@import './variables';
+@forward './variables';
 
 // 2. Sobrescritas do Material Design
-@import './material-overrides';
+@forward './material-overrides';
 
 // 3. Tipografia
-@import './typography';
+@forward './typography';
 
 // 4. Componentes reutilizáveis
-@import './buttons';
-@import './forms';
-@import './cards';
-@import './avatar';
+@forward './buttons';
+@forward './forms';
+@forward './cards';
+@forward './avatar';
 
 // 5. Wrappers de página
-@import './page-wrappers';
+@forward './page-wrappers';
 
 // 6. Layout e helpers
-@import './layout';
+@forward './layout';
 
 // 7. Componentes customizados
-@import './snackbar';
-@import './scrollbar';
+@forward './snackbar';
+@forward './scrollbar';
 
 // 8. Animações
-@import './animations';
-@import './icon-animations';
+@forward './animations';
+@forward './icon-animations';

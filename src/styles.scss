@@ -30,13 +30,11 @@ body {
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
   margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // Importar estilos globais customizados
 @import './styles/index.scss';
