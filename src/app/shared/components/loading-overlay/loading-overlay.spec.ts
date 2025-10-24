@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoadingOverlay } from './loading-overlay';
+import { LoadingOverlayComponent } from './loading-overlay';
 
-describe('LoadingOverlay', () => {
-  let component: LoadingOverlay;
-  let fixture: ComponentFixture<LoadingOverlay>;
+describe('LoadingOverlayComponent', () => {
+  let component: LoadingOverlayComponent;
+  let fixture: ComponentFixture<LoadingOverlayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoadingOverlay]
+      imports: [LoadingOverlayComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LoadingOverlay);
+    fixture = TestBed.createComponent(LoadingOverlayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
