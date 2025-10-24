@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './loading-overlay.html',
   styleUrl: './loading-overlay.scss',
 })
-export class LoadingOverlay {
+export class LoadingOverlayComponent {
   @Input() show: boolean = false;
   @Input() message: string = 'Carregando...';
 }

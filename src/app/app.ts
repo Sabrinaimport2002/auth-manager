@@ -1,6 +1,6 @@
-import { Component, signal, inject, computed } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
-import { Menu } from './shared/components/menu/menu';
+import { MenuComponent } from './shared/components/menu/menu';
 import { MenuService } from './core/services/menu.service';
 import { CommonModule } from '@angular/common';
 import { filter, map } from 'rxjs';
@@ -8,7 +8,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Menu, CommonModule],
+  imports: [RouterOutlet, MenuComponent, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

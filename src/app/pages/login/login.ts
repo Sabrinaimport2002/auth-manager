@@ -4,11 +4,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RouterLink, Router } from '@angular/router';
 import { MaterialModules } from '../../shared/material/material.modules';
 import { NotificationService } from '../../core/services/notification.service';
-import { LoadingOverlay } from '../../shared/components/loading-overlay/loading-overlay';
+import { LoadingOverlayComponent } from '../../shared/components/loading-overlay/loading-overlay';
+import { InputComponent } from '../../shared/components/input/input';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink, MaterialModules, LoadingOverlay],
+  imports: [ReactiveFormsModule, RouterLink, MaterialModules, LoadingOverlayComponent, InputComponent],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
@@ -16,7 +17,6 @@ export class Login {
   readonly authService = inject(AuthService);
   readonly router = inject(Router);
   readonly notificationService = inject(NotificationService);
-  hidePassword = true;
   isLoading = false;
 
   loginForm = new FormGroup({
@@ -24,9 +24,12 @@ export class Login {
     password: new FormControl('', [Validators.required])
   })
 
+  get emailControl() {
+    return this.loginForm.get('email') as FormControl;
+  }
 
-  togglePasswordVisibility() {
-    this.hidePassword = !this.hidePassword;
+  get passwordControl() {
+    return this.loginForm.get('password') as FormControl;
   }
 
   onSubmit() {
@@ -35,7 +38,7 @@ export class Login {
     const password = this.loginForm.value.password || '';
 
     this.authService.login({ email, password }).subscribe({
-      next: (user) => {
+      next: () => {
         this.isLoading = false;
         this.notificationService.showSuccess('Login realizado com sucesso! Bem-vindo de volta!');
         this.router.navigate(['/dashboard']);

@@ -6,14 +6,20 @@ import { MaterialModules } from '../../shared/material/material.modules';
 import { NotificationService } from '../../core/services/notification.service';
 import { passwordMatchValidator } from '../../core/validators/password-match.validator';
 import { passwordStrengthValidator } from '../../core/validators/password-strength.validator';
-import { LoadingOverlay } from '../../shared/components/loading-overlay/loading-overlay';
+import { LoadingOverlayComponent } from '../../shared/components/loading-overlay/loading-overlay';
+import { InputComponent } from '../../shared/components/input/input';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, RouterLink, MaterialModules, LoadingOverlay
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    MaterialModules,
+    LoadingOverlayComponent,
+    InputComponent,
   ],
   templateUrl: './register.html',
-  styleUrl: './register.scss'
+  styleUrl: './register.scss',
 })
 export class Register {
   isLoading = false;
@@ -21,15 +27,36 @@ export class Register {
   readonly authService = inject(AuthService);
   readonly router = inject(Router);
   readonly notificationService = inject(NotificationService);
-  
 
-  registerForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), passwordStrengthValidator()]),
-    confirmPassword: new FormControl('', [Validators.required]),
-  }, { validators: passwordMatchValidator('password', 'confirmPassword') }
+  registerForm = new FormGroup(
+    {
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        passwordStrengthValidator(),
+      ]),
+      confirmPassword: new FormControl('', [Validators.required]),
+    },
+    { validators: passwordMatchValidator('password', 'confirmPassword') }
   );
+
+  get nameControl() {
+    return this.registerForm.get('name') as FormControl;
+  }
+
+  get emailControl() {
+    return this.registerForm.get('email') as FormControl;
+  }
+
+  get passwordControl() {
+    return this.registerForm.get('password') as FormControl;
+  }
+
+  get confirmPasswordControl() {
+    return this.registerForm.get('confirmPassword') as FormControl;
+  }
 
   hidePassword = true;
   hideConfirmPassword = true;
@@ -43,7 +70,7 @@ export class Register {
   }
 
   onSubmit() {
-    this.isLoading = true
+    this.isLoading = true;
     const name = this.registerForm.value.name || '';
     const email = this.registerForm.value.email || '';
     const password = this.registerForm.value.password || '';
@@ -51,13 +78,17 @@ export class Register {
     this.authService.register({ email: email, password: password, name: name }).subscribe({
       next: () => {
         this.isLoading = false;
-        this.notificationService.showSuccess('Cadastro realizado com sucesso! Faça login para continuar.');
+        this.notificationService.showSuccess(
+          'Cadastro realizado com sucesso! Faça login para continuar.'
+        );
         this.router.navigate(['/login']);
       },
       error: (error) => {
         this.isLoading = false;
-        this.notificationService.showError(error.message || 'Email já cadastrado. Tente outro email ou faça login.');
-      }
-    })
+        this.notificationService.showError(
+          error.message || 'Email já cadastrado. Tente outro email ou faça login.'
+        );
+      },
+    });
   }
 }

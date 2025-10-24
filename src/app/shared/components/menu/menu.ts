@@ -5,15 +5,15 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MaterialModules } from '../../material/material.modules';
 import { CommonModule } from '@angular/common';
 import { NotificationService } from '../../../core/services/notification.service';
-import { LoadingOverlay } from '../loading-overlay/loading-overlay';
+import { LoadingOverlayComponent } from '../loading-overlay/loading-overlay';
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterLink, RouterLinkActive, MaterialModules, CommonModule, LoadingOverlay],
+  imports: [RouterLink, RouterLinkActive, MaterialModules, CommonModule, LoadingOverlayComponent],
   templateUrl: './menu.html',
   styleUrl: './menu.scss'
 })
-export class Menu {
+export class MenuComponent {
   isLoading = false;
 
   readonly authService = inject(AuthService);

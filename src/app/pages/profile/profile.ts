@@ -5,11 +5,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { passwordMatchValidator } from '../../core/validators/password-match.validator';
 import { MaterialModules } from '../../shared/material/material.modules';
 import { passwordStrengthValidator } from '../../core/validators/password-strength.validator';
-import { LoadingOverlay } from '../../shared/components/loading-overlay/loading-overlay';
+import { LoadingOverlayComponent } from '../../shared/components/loading-overlay/loading-overlay';
+import { InputComponent } from '../../shared/components/input/input';
 
 @Component({
   selector: 'app-profile',
-  imports: [MaterialModules, ReactiveFormsModule, LoadingOverlay],
+  imports: [MaterialModules, ReactiveFormsModule, LoadingOverlayComponent, InputComponent],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
@@ -41,9 +42,21 @@ export class Profile implements OnInit {
     { validators: passwordMatchValidator('newPassword', 'confirmPassword') }
   );
 
-  hideCurrentPassword = true;
-  hideNewPassword = true;
-  hideConfirmPassword = true;
+  get nameControl() {
+    return this.profileForm.get('name') as FormControl;
+  }
+  get emailControl() {
+    return this.profileForm.get('email') as FormControl;
+  }
+  get currentPasswordControl() {
+    return this.passwordForm.get('currentPassword') as FormControl;
+  }
+  get newPasswordControl() {
+    return this.passwordForm.get('newPassword') as FormControl;
+  }
+  get confirmPasswordControl() {
+    return this.passwordForm.get('confirmPassword') as FormControl;
+  }
 
   ngOnInit() {
     this.isLoading = true;
@@ -54,18 +67,6 @@ export class Profile implements OnInit {
       });
       this.isLoading = false;
     }
-  }
-
-  toggleCurrentPasswordVisibility() {
-    this.hideCurrentPassword = !this.hideCurrentPassword;
-  }
-
-  toggleNewPasswordVisibility() {
-    this.hideNewPassword = !this.hideNewPassword;
-  }
-
-  toggleConfirmPasswordVisibility() {
-    this.hideConfirmPassword = !this.hideConfirmPassword;
   }
 
   updateProfile() {
@@ -101,11 +102,6 @@ export class Profile implements OnInit {
           this.isLoading = false
           this.notificationService.showSuccess('Senha alterada com sucesso!');
           this.passwordForm.reset();
-
-          // Reseta a visibilidade das senhas
-          this.hideCurrentPassword = true;
-          this.hideNewPassword = true;
-          this.hideConfirmPassword = true;
         },
         error: (error) => {
           this.isLoading = false;
